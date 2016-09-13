@@ -1,8 +1,8 @@
-# java
-#
-# VERSION       Java 8
+# Fedora baseline docker container with Oracle JDK and RPM build tools
+# Generated on Sep Aug 12 19:50:51 GMT 2016 using code in this GitHub repo:
+# https://github.com/rigon/docker-fedora-jdk
 
-# use the centos base image provided by dotCloud
+# Use the rigon/fedora-rpmtools base image
 FROM rigon/fedora-rpmtools
 MAINTAINER Ricardo Gonçalves <ricardompgoncalves@gmail.com>
 
@@ -17,6 +17,7 @@ RUN dnf -y install wget
 RUN wget --no-cookies --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/$JAVA_VERSION-$BUILD_VERSION/jdk-$JAVA_VERSION-linux-x64.rpm" -O /tmp/jdk-8-linux-x64.rpm
 
 RUN dnf -y install /tmp/jdk-8-linux-x64.rpm
+RUN rm /tmp/jdk-8-linux-x64.rpm
 
 RUN alternatives --install /usr/bin/java jar /usr/java/latest/bin/java 200000
 RUN alternatives --install /usr/bin/javaws javaws /usr/java/latest/bin/javaws 200000
