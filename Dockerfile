@@ -6,15 +6,16 @@
 FROM rigon/fedora-rpmtools
 MAINTAINER Ricardo Gonçalves <ricardompgoncalves@gmail.com>
 
-ENV JAVA_VERSION 8u102
-ENV BUILD_VERSION b14
+ENV JAVA_VERSION 8u121
+ENV BUILD_VERSION b13
+ENV UUID e9e7ea248e2c4826b92b3f075a80e441
 
 # Upgrading system
 RUN dnf -y upgrade
 RUN dnf -y install wget
 
 # Downloading Java
-RUN wget --no-cookies --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/$JAVA_VERSION-$BUILD_VERSION/jdk-$JAVA_VERSION-linux-x64.rpm" -O /tmp/jdk-8-linux-x64.rpm
+RUN wget --no-cookies --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/$JAVA_VERSION-$BUILD_VERSION/$UUID/jdk-$JAVA_VERSION-linux-x64.rpm" -O /tmp/jdk-8-linux-x64.rpm
 
 RUN dnf -y install /tmp/jdk-8-linux-x64.rpm
 RUN rm /tmp/jdk-8-linux-x64.rpm
